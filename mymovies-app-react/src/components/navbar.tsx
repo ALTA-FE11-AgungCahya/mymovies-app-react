@@ -42,7 +42,7 @@ export default class Navbar extends Component {
           </div>
         </div>
         <div className="navbar-center">
-          <img src="../assets/logo-nav.png" alt="logo-nav.png" />
+          <img src="" alt="logo.jpg" />
         </div>
 
         <div className="navbar-end">
