@@ -27,7 +27,7 @@ export default class Navbar extends Component {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <a>Home</a>
+                <a href="../index.tsx">Home</a>
               </li>
               <li>
                 <a>Favorite</a>

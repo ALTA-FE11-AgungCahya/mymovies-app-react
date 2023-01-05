@@ -13,6 +13,7 @@ interface DataType {
   overview?: string;
   relase_date?: string;
   runtime?: number;
+  vote_average?: number;
   genres?: GenreType[];
   // genres?: GenreType[ ];
 }
@@ -60,25 +61,28 @@ export default class Detail extends Component<PropsType, StateType> {
           <SkeletonLoading />
         ) : (
           // background image
-          <div className="bgImage w-full h-[70vh] bg-cover bg-center bg-no-repeat ">
+          <div className="bgImage w-full bg-cover bg-center bg-no-repeat ">
             {/* container light/dark */}
-            <div className=" flex h-full w-full flex-wrap item-center justify-center bg-gradient-to-t from-white p-6">
+            <div className=" flex h-full w-full flex-wrap item-center justify-center bg-gradient-to-t from-zinc-50 p-6 py-10">
               {/* container isi */}
-              <div className="bgGlass card lg:card-side w-4/5 lg:h-80  gap-4 p-3 mt-10 shadow-lg shadow-black backdrop-blur">
+              <div className="bgGlass card lg:card-side w-4/5 gap-20 p-3 py-7 shadow-lg shadow-slate-700 backdrop-blur-md">
                 <img
-                  className="h-3/5 w-30 md:h-4/5 place-self-center object-contain "
+                  className=" lg:ml-8 lg:w-40 place-self-center"
                   src={`https://image.tmdb.org/t/p/w500${this.state.data.poster_path}`}
                   alt={this.state.data.poster_path}
                 />
-                <div className="p-5">
-                  <p>Tittle : {this.state.data.title}</p>
+
+                <div className="p-5 text-[18px] text-zinc-900">
+                  <p className="text-[32px] font-bold text-center">
+                    {this.state.data.title}
+                  </p>
+                  <p>Runtime : {this.state.data.runtime} menit </p>
                   <p>
                     Release Date :{" "}
                     {moment(this.state.data.relase_date).format(
-                      " DD MMMM YYYY"
+                      "dddd, DD MMMM YYYY"
                     )}
                   </p>
-                  <p>Runtime : {this.state.data.runtime} </p>
                   <p>
                     Genre :{" "}
                     {this.state.data.genres
@@ -87,7 +91,12 @@ export default class Detail extends Component<PropsType, StateType> {
                       })
                       .join(", ")}
                   </p>
-                  <p>Overview : {this.state.data.overview} </p>
+                  <p>Voting : {this.state.data.vote_average} </p>
+                  <p>
+                    Overview : <br />
+                    {this.state.data.overview}{" "}
+                  </p>
+                  <button className="btn w-full">Button</button>
                 </div>
               </div>
             </div>
