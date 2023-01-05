@@ -30,7 +30,7 @@ export default class Detail extends Component<PropsType, StateType> {
 
     this.state = {
       data: {},
-      loading: false,
+      loading: true,
     };
   }
 
@@ -51,7 +51,9 @@ export default class Detail extends Component<PropsType, StateType> {
       .catch((error) => {
         alert(error.toString);
       })
-      .finally(() => {});
+      .finally(() => {
+        this.setState({ loading: false });
+      });
   }
 
   render() {
@@ -63,11 +65,11 @@ export default class Detail extends Component<PropsType, StateType> {
           // background image
           <div className="bgImage w-full bg-cover bg-center bg-no-repeat ">
             {/* container light/dark */}
-            <div className=" flex h-full w-full flex-wrap item-center justify-center bg-gradient-to-t from-zinc-50 p-6 py-10">
+            <div className=" flex h-full w-full flex-wrap item-center justify-center bg-gradient-to-t from-zinc-50 p-6 py-16">
               {/* container isi */}
-              <div className="bgGlass card lg:card-side w-4/5 gap-20 p-3 py-7 shadow-lg shadow-slate-700 backdrop-blur-md">
+              <div className="bgGlass card lg:card-side w-4/5 gap-20 p-3 pt-2 shadow-lg shadow-slate-700 backdrop-blur-md">
                 <img
-                  className=" lg:ml-8 lg:w-40 place-self-center"
+                  className=" lg:ml-8 lg:w-[11rem] place-self-center"
                   src={`https://image.tmdb.org/t/p/w500${this.state.data.poster_path}`}
                   alt={this.state.data.poster_path}
                 />
@@ -96,12 +98,16 @@ export default class Detail extends Component<PropsType, StateType> {
                     Overview : <br />
                     {this.state.data.overview}{" "}
                   </p>
-                  <button className="btn w-full">Button</button>
+                  <br />
+                  <button className="btn btn-active w-full text-[14px] hover:bg-gray-400">
+                    WATCH NOW{" "}
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         )}
+        <h1> hello </h1>
       </Layout>
     );
   }
