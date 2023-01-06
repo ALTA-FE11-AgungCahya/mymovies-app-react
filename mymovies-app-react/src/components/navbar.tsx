@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import { Component } from "react";
+import { Link } from "react-router-dom";
 
 export default class Navbar extends Component {
   render() {
@@ -27,10 +28,10 @@ export default class Navbar extends Component {
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <a href="../index.tsx">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a>Favorite</a>
+                <Link to="">Favorite</Link>
               </li>
               <li>
                 <a>Anime Rekomendasi</a>

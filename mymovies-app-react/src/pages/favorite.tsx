@@ -1,10 +1,8 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import axios from "axios";
 
 import CardImage from "../components/cardImage";
 import Layout from "../components/layout";
-
-import Loading from "../components/loading";
 import { SkeletonLoading } from "../components/loading";
 
 interface DatasType {

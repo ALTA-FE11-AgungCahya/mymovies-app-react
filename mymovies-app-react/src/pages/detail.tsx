@@ -5,23 +5,14 @@ import moment from "moment";
 import "../styles/detail.css";
 
 import Loading, { SkeletonLoading } from "../components/loading";
+import { MoviesType, VidiosType } from "../utils/types/movie";
 
-interface DataType {
-  id?: number;
-  title?: string;
-  poster_path?: string;
-  overview?: string;
-  relase_date?: string;
-  runtime?: number;
-  vote_average?: number;
-  genres?: GenreType[];
-  // genres?: GenreType[ ];
-}
 interface PropsType {}
 
 interface StateType {
   loading: boolean;
-  data: DataType;
+  data: MoviesType;
+  videos: VidiosType[];
 }
 
 export default class Detail extends Component<PropsType, StateType> {
@@ -30,6 +21,7 @@ export default class Detail extends Component<PropsType, StateType> {
 
     this.state = {
       data: {},
+      videos: [],
       loading: true,
     };
   }
@@ -48,6 +40,10 @@ export default class Detail extends Component<PropsType, StateType> {
       .then((data) => {
         this.setState({ data });
       })
+      // .then((dataMovieSimilar) => {
+      //   const {results} = dataMovieSimilar.;
+      //   this.setState({ datas });
+      // })
       .catch((error) => {
         alert(error.toString);
       })
@@ -107,7 +103,24 @@ export default class Detail extends Component<PropsType, StateType> {
             </div>
           </div>
         )}
-        <h1> hello </h1>
+        {/* <br />
+        <h1 className="text-center font-bold text-[40px] text-zinc-900">
+          {" "}
+          Similar Movie{" "}
+        </h1>
+        <div className="grid grid-cols-4 gap-3">
+          {this.state.loading
+            ? [...Array(12).keys()].map((dataMovie) => (
+                <SkeletonLoading key={data} />
+              ))
+            : this.state.datas.map((data) => (
+                <CardImage
+                  key={data.id}
+                  title={data.title}
+                  image={data.poster_path}
+                />
+              ))}
+        </div> */}
       </Layout>
     );
   }
