@@ -1,127 +1,98 @@
-import React, { Component } from "react";
-import Layout from "../components/layout";
-import axios from "axios";
+/*
+hooks memiliki fungsi pengganti withrouter yaitu useParams dari router-dom
+*/
+
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import moment from "moment";
+import axios from "axios";
+
+import SkeletonLoading from "../components/loading";
+import Layout from "../components/layout";
 import "../styles/detail.css";
-
-import Loading, { SkeletonLoading } from "../components/loading";
 import { MoviesType, VidiosType } from "../utils/types/movie";
+import { useTitle } from "../utils/hooks/customHooks";
 
-interface PropsType {}
+const Detail = () => {
+  const { id_movie } = useParams();
+  const [data, setData] = useState<MoviesType>({});
+  const [videos, setVideos] = useState<VidiosType[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  useTitle(`${data.title} | Detail_Page`);
 
-interface StateType {
-  loading: boolean;
-  data: MoviesType;
-  videos: VidiosType[];
-}
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-export default class Detail extends Component<PropsType, StateType> {
-  constructor(props: PropsType) {
-    super(props);
-
-    this.state = {
-      data: {},
-      videos: [],
-      loading: true,
-    };
-  }
-
-  componentDidMount() {
-    this.fetchData();
-  }
-
-  fetchData() {
+  function fetchData() {
     fetch(
-      `https://api.themoviedb.org/3/movie/683328?api_key=${
+      `https://api.themoviedb.org/3/movie/${id_movie}?api_key=${
         import.meta.env.VITE_API_KEY
       }&language=en-US`
     )
       .then((response) => response.json())
       .then((data) => {
-        this.setState({ data });
+        setData(data);
+        setVideos(data.videos?.results);
       })
-      // .then((dataMovieSimilar) => {
-      //   const {results} = dataMovieSimilar.;
-      //   this.setState({ datas });
-      // })
       .catch((error) => {
         alert(error.toString);
       })
       .finally(() => {
-        this.setState({ loading: false });
+        setLoading(false);
       });
   }
 
-  render() {
-    return (
-      <Layout>
-        {this.state.loading ? (
-          <SkeletonLoading />
-        ) : (
-          // background image
-          <div className="bgImage w-full bg-cover bg-center bg-no-repeat ">
-            {/* container light/dark */}
-            <div className=" flex h-full w-full flex-wrap item-center justify-center bg-gradient-to-t from-zinc-50 p-6 py-16">
-              {/* container isi */}
-              <div className="bgGlass card lg:card-side w-4/5 gap-20 p-3 pt-2 shadow-lg shadow-slate-700 backdrop-blur-md">
-                <img
-                  className=" lg:ml-8 lg:w-[11rem] place-self-center"
-                  src={`https://image.tmdb.org/t/p/w500${this.state.data.poster_path}`}
-                  alt={this.state.data.poster_path}
-                />
+  return (
+    <Layout>
+      {loading ? (
+        <SkeletonLoading />
+      ) : (
+        // background image
+        <div className="bgImage w-full bg-cover bg-center bg-no-repeat ">
+          {/* container light/dark */}
+          <div className=" flex h-full w-full flex-wrap item-center justify-center bg-gradient-to-t from-zinc-50 p-6 py-16">
+            {/* container isi */}
+            <div className="bgGlass card lg:card-side w-4/5 gap-20 p-3 pt-2 shadow-lg shadow-slate-700 backdrop-blur-md">
+              <img
+                className=" lg:ml-8 lg:w-[11rem] place-self-center"
+                src={`https://image.tmdb.org/t/p/w500${data.poster_path}`}
+                alt={data.poster_path}
+              />
 
-                <div className="p-5 text-[18px] text-zinc-900">
-                  <p className="text-[32px] font-bold text-center">
-                    {this.state.data.title}
-                  </p>
-                  <p>Runtime : {this.state.data.runtime} menit </p>
-                  <p>
-                    Release Date :{" "}
-                    {moment(this.state.data.relase_date).format(
-                      "dddd, DD MMMM YYYY"
-                    )}
-                  </p>
-                  <p>
-                    Genre :{" "}
-                    {this.state.data.genres
-                      ?.map((genre) => {
-                        return genre.name;
-                      })
-                      .join(", ")}
-                  </p>
-                  <p>Voting : {this.state.data.vote_average} </p>
-                  <p>
-                    Overview : <br />
-                    {this.state.data.overview}{" "}
-                  </p>
-                  <br />
-                  <button className="btn btn-active w-full text-[14px] hover:bg-gray-400">
-                    WATCH NOW{" "}
-                  </button>
-                </div>
+              <div className="p-5 text-[18px] text-zinc-900">
+                <p className="text-[32px] font-bold text-center">
+                  {data.title}
+                </p>
+                <p>Runtime : {data.runtime} menit </p>
+                <p>
+                  Release Date :{" "}
+                  {moment(data.relase_date).format("dddd, DD MMMM YYYY")}
+                </p>
+                <p>
+                  Genre :{" "}
+                  {data.genres
+                    ?.map((genre) => {
+                      return genre.name;
+                    })
+                    .join(", ")}
+                </p>
+                <p>Voting : {data.vote_average} </p>
+                <p>
+                  Overview : <br />
+                  {data.overview}{" "}
+                </p>
+                <br />
+                <button className="btn btn-active w-full text-[14px] hover:bg-gray-400">
+                  WATCH NOW{" "}
+                </button>
               </div>
             </div>
           </div>
-        )}
-        {/* <br />
-        <h1 className="text-center font-bold text-[40px] text-zinc-900">
-          {" "}
-          Similar Movie{" "}
-        </h1>
-        <div className="grid grid-cols-4 gap-3">
-          {this.state.loading
-            ? [...Array(12).keys()].map((dataMovie) => (
-                <SkeletonLoading key={data} />
-              ))
-            : this.state.datas.map((data) => (
-                <CardImage
-                  key={data.id}
-                  title={data.title}
-                  image={data.poster_path}
-                />
-              ))}
-        </div> */}
-      </Layout>
-    );
-  }
-}
+        </div>
+      )}
+    </Layout>
+  );
+};
+
+export default Detail;

@@ -18,4 +18,5 @@ export interface MoviesType {
   runtime?: number;
   vote_average?: number;
   genres?: GenreType[];
+  backdrop_path?: string;
 }

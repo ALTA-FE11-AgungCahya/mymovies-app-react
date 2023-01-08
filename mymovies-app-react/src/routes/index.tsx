@@ -1,9 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Component } from "react";
 
-import Homepage from "../pages";
+import AnimeRecom from "../pages/animeRecom";
 import DetailMovie from "../pages/detail";
 import Favorite from "../pages/favorite";
+import Homepage from "../pages";
 
 const router = createBrowserRouter([
   {
@@ -15,15 +15,17 @@ const router = createBrowserRouter([
     element: <DetailMovie />,
   },
   {
-    path: "/favorites",
+    path: "/favorite",
     element: <Favorite />,
+  },
+  {
+    path: "/animeRecom",
+    element: <AnimeRecom />,
   },
 ]);
 
-class App extends Component {
-  render() {
-    return <RouterProvider router={router} />;
-  }
-}
+const App = () => {
+  return <RouterProvider router={router} />;
+};
 
 export default App;
