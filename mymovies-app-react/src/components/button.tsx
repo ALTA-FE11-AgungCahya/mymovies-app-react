@@ -6,7 +6,10 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button: FC<ButtonProps> = ({ label, ...props }) => {
   return (
-    <button className="btn w-full tracking-wider" {...props}>
+    <button
+      className="btn bg-slate-800 w-full tracking-wider transition ease-in delay-150 hover:bg-gray-400 hover:text-zinc-800 duration-300 "
+      {...props}
+    >
       {label}
     </button>
   );
