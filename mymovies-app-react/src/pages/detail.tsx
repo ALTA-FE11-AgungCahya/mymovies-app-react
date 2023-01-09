@@ -49,7 +49,12 @@ const Detail = () => {
         <SkeletonLoading />
       ) : (
         // background image
-        <div className="bgImage w-full bg-cover bg-center bg-no-repeat ">
+        <div
+          className="w-full bg-cover bg-no-repeat bg-top"
+          style={{
+            backgroundImage: `URL( https://image.tmdb.org/t/p/original${data.backdrop_path} )`,
+          }}
+        >
           {/* container light/dark */}
           <div className=" flex h-full w-full flex-wrap item-center justify-center bg-gradient-to-t from-zinc-50 p-6 py-16">
             {/* container isi */}

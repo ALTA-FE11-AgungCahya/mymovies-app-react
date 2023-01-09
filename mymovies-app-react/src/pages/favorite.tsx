@@ -27,8 +27,15 @@ const Favorite = () => {
   function removeFavorite(data: MoviesType) {
     let dupeDatas: MoviesType[] = datas.slice();
     const filterData = dupeDatas.filter((item) => item.id !== data.id);
+    const checkUpdate = localStorage.removeItem("FavMovie");
+    // console.log(checkUpdate);
     // console.log(filterData);
+    // if (checkUpdate) {
+    //   let cek: any = JSON.parse (checkUpdate);
+
     localStorage.setItem("FavMovie", JSON.stringify(filterData));
+    //   localStorage.setItem("FavMovie", JSON.stringify([data]));
+    // }
     alert(`Delete ${data.title} from favorite list`);
   }
 
