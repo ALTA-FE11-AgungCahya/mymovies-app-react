@@ -1,8 +1,18 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import Button from "./button";
+
+import { ThemeContext } from "../utils/types/contex";
 
 const Navbar = () => {
+  const { theme, setTheme } = useContext(ThemeContext);
+
+  function handleTheme() {
+    theme === "light" ? setTheme("dark") : setTheme("light");
+  }
+
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-100 dark:bg-gray-600 ">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost btn-circle">
@@ -52,22 +62,7 @@ const Navbar = () => {
             className="input input-bordered"
           />
         </div>
-        <button className="btn btn-ghost btn-circle">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            />
-          </svg>
-        </button>
+        <Button label="Theme" onClick={() => handleTheme()} />
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar mr-3">
             <div className="w-10 rounded-full">

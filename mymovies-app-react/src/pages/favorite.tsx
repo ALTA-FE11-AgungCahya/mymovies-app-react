@@ -10,8 +10,8 @@ import { useTitle } from "../utils/hooks/customHooks";
 const Favorite = () => {
   const [datas, setDatas] = useState<MoviesType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  useTitle("Favorite|Page");
 
+  useTitle("Favorite|Page");
   useEffect(() => {
     fetchData();
   }, []);
@@ -24,19 +24,19 @@ const Favorite = () => {
     setLoading(false);
   }
 
+  // useEffect(() => {
+  //   localStorage.setItem("FavMovie", JSON.stringify(filterData));
+  // }, [filterData]);
+
   function removeFavorite(data: MoviesType) {
     let dupeDatas: MoviesType[] = datas.slice();
     const filterData = dupeDatas.filter((item) => item.id !== data.id);
-    const checkUpdate = localStorage.removeItem("FavMovie");
-    // console.log(checkUpdate);
-    // console.log(filterData);
-    // if (checkUpdate) {
-    //   let cek: any = JSON.parse (checkUpdate);
 
-    localStorage.setItem("FavMovie", JSON.stringify(filterData));
-    //   localStorage.setItem("FavMovie", JSON.stringify([data]));
-    // }
-    alert(`Delete ${data.title} from favorite list`);
+    if (filterData) {
+      localStorage.setItem("FavMovie", JSON.stringify(filterData));
+      setDatas(filterData);
+      alert(`Delete ${data.title} from favorite list`);
+    }
   }
 
   return (

@@ -4,46 +4,40 @@
 
 // export default AnimeRecom;
 
-import React, { useState } from "react";
+// const temp = JSON.parse(localStorage.getItem('Name', 'Image') || '[]');
+const temp = JSON.parse(localStorage.getItem("Name") || "[]");
 
-function ShoppingCart() {
-  const [cart, setCart] = useState([]);
+const Posts = () => {
+  const [state, setState] = React.useState(temp);
 
-  function addItemToCart(e) {
-    const item = e.target.value;
-    console.log(item);
-    setCart([...cart, item]);
-  }
+  const deleteItem = (removeindex) => {
+    // localStorage.removeItem('Name');
+    // localStorage.removeItem('Image');
+
+    setState((s) => s.filter((_, index) => index !== removeindex));
+  };
+
+  React.useEffect(() => {
+    localStorage.setItem("Name", JSON.stringify(state));
+  }, [state]);
 
   return (
-    <div className="app">
-      <div className="items">
-        <button value="MacBook Pro" onClick={addItemToCart}>
-          {" "}
-          MacBook Pro
-        </button>
-        <button value="iPhone XS" onClick={addItemToCart}>
-          iPhone XS
-        </button>
-        <button value="Gem" onClick={addItemToCart}>
-          {" "}
-          Gem
-        </button>
-        <button value="Teddy Bear" onClick={addItemToCart}>
-          {" "}
-          Teddy Bear
-        </button>
-      </div>
-      <div className="cart">
-        Cart
-        <ul>
-          {cart.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
+    <div className="post-data">
+      <div className="post-data-content">
+        {temp.map((val, index) => (
+          <div className="posts-data" key={index}>
+            <button
+              type="button"
+              className="delete-post"
+              onClick={() => deleteItem(index)}
+            >
+              x
+            </button>
+            <img src={val.image} alt={val.image} />
+            <h3>{val.name}</h3>
+          </div>
+        ))}
       </div>
     </div>
   );
-}
-
-export default ShoppingCart;
+};

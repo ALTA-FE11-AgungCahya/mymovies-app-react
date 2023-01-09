@@ -66,8 +66,8 @@ const Index = () => {
       localStorage.setItem("FavMovie", JSON.stringify(parseFav));
     } else {
       localStorage.setItem("FavMovie", JSON.stringify([data]));
-      alert("Added Movie to Favorite");
     }
+    alert("Added Movie to Favorite");
   }
 
   return (
@@ -104,7 +104,7 @@ const Index = () => {
         </h1>
       )}
 
-      <div className="container mx-auto grid grid-col-4 lg:grid-cols-3 gap-3 mt-5">
+      <div className="container mx-auto grid grid-col-2 lg:grid-cols-4 gap-3 mt-5">
         {loading
           ? [...Array(12).keys()].map((data) => <SkeletonLoading key={data} />)
           : datas.map((data) => (

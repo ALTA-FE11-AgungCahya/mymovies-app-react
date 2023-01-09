@@ -1,9 +1,11 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { useState, useMemo, useEffect } from "react";
 
-import AnimeRecom from "../pages/animeRecom";
+// import AnimeRecom from "../pages/animeRecom";
 import DetailMovie from "../pages/detail";
 import Favorite from "../pages/favorite";
 import Homepage from "../pages";
+import { ThemeContext } from "../utils/types/contex";
 
 const router = createBrowserRouter([
   {
@@ -18,14 +20,29 @@ const router = createBrowserRouter([
     path: "/favorite",
     element: <Favorite />,
   },
-  {
-    path: "/animeRecom",
-    element: <AnimeRecom />,
-  },
+  // {
+  //   path: "/animeRecom",
+  //   element: <AnimeRecom />,
+  // },
 ]);
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  const [theme, setTheme] = useState("light");
+  const background = useMemo(() => ({ theme, setTheme }), [theme]);
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+
+  return (
+    <ThemeContext.Provider value={background}>
+      <RouterProvider router={router} />
+    </ThemeContext.Provider>
+  );
 };
 
 export default App;
