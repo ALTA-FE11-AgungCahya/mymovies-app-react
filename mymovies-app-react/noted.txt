@@ -1,1 +1,10 @@
 npm i -D vite-tsconfig-paths <install aboslute import => library whilecard>
+
+Deploy gratisan :
+- vercel (Rekom)
+- netlify (Rekom)
+- surge 
+- firebase hosting
+- github pages
+- render 
+- fly.io 
