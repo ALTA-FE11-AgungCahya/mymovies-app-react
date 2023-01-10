@@ -8,3 +8,17 @@ Deploy gratisan :
 - github pages
 - render 
 - fly.io 
+
+fungsi dari pada redux adalah sama dengan context namun 
+1. redux bisa digunakan untuk perubahan data yang berskala besar, sehingga tidak sperti contex yang setiap ada perubahan harus dibedakan satu sama lain.
+
+2. referensi redux terlalu banyak sehingga lumayan susah (gunakan redux di kleas)
+
+3. merupakan tempat tertinggi pada semua component
+
+4. hanya cocok untuk aplikasi skala besar, untuk menengah dan kecil disarankan menggunakan  context
+
+
+
+NOted *) mendapatkan api key di todoist
+setting > integrations

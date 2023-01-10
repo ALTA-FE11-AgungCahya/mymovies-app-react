@@ -3,7 +3,7 @@ import React from "react";
 import { Provider } from "react-redux";
 import axios from "axios";
 
-import store from "./utils/redux/store/store";
+import store from "./utils/store/store";
 import App from "./routes";
 import "./styles/index.css";
 

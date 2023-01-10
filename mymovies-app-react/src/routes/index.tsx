@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useState, useMemo, useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 // import AnimeRecom from "../pages/animeRecom";
 import Homepage from "../pages";
@@ -7,6 +8,7 @@ import DetailMovie from "../pages/detail";
 import Favorite from "../pages/favorite";
 
 import { ThemeContext } from "../utils/contex";
+import { setFavorites } from "utils/reducer/reducer";
 
 const router = createBrowserRouter([
   {
@@ -28,8 +30,16 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
+  const dispatch = useDispatch();
   const [theme, setTheme] = useState("light");
   const background = useMemo(() => ({ theme, setTheme }), [theme]);
+
+  useEffect(() => {
+    const getFavMovies = localStorage.getItem("FavMovie");
+    if (getFavMovies) {
+      dispatch(setFavorites(JSON.parse(getFavMovies)));
+    }
+  }, []);
 
   useEffect(() => {
     if (theme === "dark") {
