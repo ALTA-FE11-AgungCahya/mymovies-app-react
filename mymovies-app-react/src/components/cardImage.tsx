@@ -26,7 +26,7 @@ const CardImage: FC<CardProps> = ({
   }
 
   return (
-    <div className="card card-compact bg-zinc-100 shadow-xl transition ease-in delay-150 hover:scale-105 hover:-translate-y-3 hover:shadow-[0px_0px_60px_rgba(0,0,0,0.8)] duration-300 ">
+    <div className="card card-compact bg-zinc-100 shadow-xl transition ease-in delay-150 hover:scale-105 hover:-translate-y-3 hover:shadow-[0px_0px_50px_rgba(0,0,0,0.6)] duration-300 ">
       <figure onClick={() => onClickDetail()}>
         <img
           className="bg-contain"

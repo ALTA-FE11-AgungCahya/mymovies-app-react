@@ -41,7 +41,14 @@ const Favorite = () => {
 
   return (
     <Layout>
-      <div className="grid grid-cols-4 gap-3">
+      <h1 className="flex justify-center text-5xl font-medium text-zinc-800 py-6 underline underline-offset-[12px] decoration-solid decoration-[2px]  decoration-slate-500">
+        Fav{" "}
+        <span className="underline  decoration-sky-400 decoration-[3px]">
+          orite Mo
+        </span>
+        vie
+      </h1>
+      <div className="container mx-auto grid grid-col-2 lg:grid-cols-4 gap-3 mt-5">
         {loading
           ? [...Array(12).keys()].map((data) => <SkeletonLoading key={data} />)
           : datas.map((data) => (

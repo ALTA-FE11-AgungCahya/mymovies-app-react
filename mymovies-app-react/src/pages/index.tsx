@@ -104,7 +104,7 @@ const Index = () => {
         </h1>
       )}
 
-      <div className="container mx-auto grid grid-col-2 lg:grid-cols-4 gap-3 mt-5">
+      <div className="container mx-auto grid grid-col-2 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-3 mt-5">
         {loading
           ? [...Array(12).keys()].map((data) => <SkeletonLoading key={data} />)
           : datas.map((data) => (

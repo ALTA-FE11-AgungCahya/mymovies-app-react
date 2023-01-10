@@ -2,10 +2,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useState, useMemo, useEffect } from "react";
 
 // import AnimeRecom from "../pages/animeRecom";
+import Homepage from "../pages";
 import DetailMovie from "../pages/detail";
 import Favorite from "../pages/favorite";
-import Homepage from "../pages";
-import { ThemeContext } from "../utils/types/contex";
+
+import { ThemeContext } from "../utils/contex";
 
 const router = createBrowserRouter([
   {
