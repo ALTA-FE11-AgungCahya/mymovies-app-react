@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import SkeletonLoading from "../components/loading";
-import CardImage from "../components/cardImage";
-import Layout from "../components/layout";
-import { MoviesType } from "../utils/types/movie";
-import { useTitle } from "../utils/hooks/customHooks";
+import SkeletonLoading from "components/loading";
+import CardImage from "components/cardImage";
+import Layout from "components/layout";
+
+import { MoviesType } from "utils/types/movie";
+import { useTitle } from "utils/hooks/customHooks";
 
 const Favorite = () => {
   const [datas, setDatas] = useState<MoviesType[]>([]);

@@ -8,12 +8,13 @@ Noted: method .map hanya ada di bentuk data array
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import SkeletonLoading from "../components/loading";
-import CardImage from "../components/cardImage";
-import Carousel from "../components/carousel";
-import Layout from "../components/layout";
-import { MoviesType } from "../utils/types/movie";
-import { useTitle } from "../utils/hooks/customHooks";
+import SkeletonLoading from "components/loading";
+import CardImage from "components/cardImage";
+import Carousel from "components/carousel";
+import Layout from "components/layout";
+
+import { MoviesType } from "utils/types/movie";
+import { useTitle } from "utils/hooks/customHooks";
 
 const Index = () => {
   useTitle("Home | Page");

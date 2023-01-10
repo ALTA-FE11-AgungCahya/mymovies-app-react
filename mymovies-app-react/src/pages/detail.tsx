@@ -7,11 +7,11 @@ import { useParams } from "react-router-dom";
 import moment from "moment";
 import axios from "axios";
 
-import SkeletonLoading from "../components/loading";
-import Layout from "../components/layout";
-import "../styles/detail.css";
-import { MoviesType, VidiosType } from "../utils/types/movie";
-import { useTitle } from "../utils/hooks/customHooks";
+import SkeletonLoading from "components/loading";
+import Layout from "components/layout";
+import "styles/detail.css";
+import { MoviesType, VidiosType } from "utils/types/movie";
+import { useTitle } from "utils/hooks/customHooks";
 
 const Detail = () => {
   const { id_movie } = useParams();

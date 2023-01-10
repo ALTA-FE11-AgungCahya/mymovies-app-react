@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 
-import { ThemeContext } from "../utils/contex";
-import Button from "./button";
+import { ThemeContext } from "utils/contex";
+import Button from "button";
 
 const Navbar = () => {
   const { theme, setTheme } = useContext(ThemeContext);
